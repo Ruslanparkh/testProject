@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1m6-f9-QR9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="42e-MD-7HY">
+                                <rect key="frame" x="0.0" y="139" width="93" height="94"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yoj-GX-U9y">
+                                    <size key="itemSize" width="180" height="180"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="m6h-A3-Or0">
+                                <rect key="frame" x="0.0" y="78" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="42e-MD-7HY" firstAttribute="top" secondItem="m6h-A3-Or0" secondAttribute="bottom" constant="10" id="1BK-on-hnS"/>
+                            <constraint firstItem="m6h-A3-Or0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9dj-by-8ir"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="42e-MD-7HY" secondAttribute="bottom" id="CYk-i9-hRt"/>
+                            <constraint firstItem="m6h-A3-Or0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="78" id="Dnb-h6-xkP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="42e-MD-7HY" secondAttribute="trailing" id="FTz-Je-JIY"/>
+                            <constraint firstItem="42e-MD-7HY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GWD-Ni-Fhe"/>
+                            <constraint firstItem="42e-MD-7HY" firstAttribute="top" secondItem="m6h-A3-Or0" secondAttribute="bottom" constant="10" id="Hfj-US-1Gd"/>
+                            <constraint firstItem="m6h-A3-Or0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M3r-A1-OU2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9yG-Pw-InB"/>
+                    <connections>
+                        <outlet property="collectionView" destination="42e-MD-7HY" id="SPC-3b-WvT"/>
+                        <outlet property="searchBar" destination="m6h-A3-Or0" id="wQd-cL-hxT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1942.0289855072465" y="87.723214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TL0-sd-isW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1m6-f9-QR9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XS7-CL-EAm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="v3J-jd-GcA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zUa-Zd-Faf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031.8840579710145" y="87.723214285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
