@@ -8,6 +8,7 @@
 import UIKit
 import Moya
 import Kingfisher
+import CoreData
 
 class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -15,6 +16,7 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
     @IBOutlet weak var collectionView: UICollectionView!
     
     var imageData: ImageData?
+    var searchItem: String?
     let nibCell = UINib(nibName: I.cellIdentifier, bundle: nil)
     var needToFetch = false
     
@@ -23,17 +25,19 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchBar.delegate = self
         collectionView.register(UINib(nibName: I.cellNibName, bundle: nil), forCellWithReuseIdentifier: I.cellIdentifier)
-        fecthPhotos()
-        
-        
     }
     
-    func fecthPhotos(){
-        NetworkHelper.instance.searchImage(q: "Apple").then { [self] result in
+    func fecthPhotos(query: String){
+        NetworkHelper.instance.searchImage(q: query).then { [self] result in
             self.imageData = result
             print(result)
             self.collectionView.reloadData()
+            
+            imageData?.images_results.enumerated().forEach { index, item in
+                print("ИНДЕКС - \(index) ССЫЛКА НА КАРТИНКУ \(item.thumbnail)")
+            }
         }.catch { error in
         print(error)
         }
@@ -53,23 +57,33 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
         return cell
         
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: 100, height: 100)
-//
-//}
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let offsetY = scrollView.contentOffset.y
     let contentHeight = scrollView.contentSize.height
 
     if offsetY > contentHeight - scrollView.frame.height * 4 {
-    if !needToFetch {
-    fecthPhotos()
-            }
-        
+   
         }
         
     }
+
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) -> Bool {
+            if searchBar.text != "" {
+                return true
+            } else {
+                searchBar.placeholder = "Type something"
+                return false
+            }
+        
+    }
+    
+    
+    func searchBarSearchButtonClicked( _ searchBar: UISearchBar!) {
+        
+        fecthPhotos(query: searchBar.text ?? "")
+//        self.collectionView.reloadData()
+       }
 
 }

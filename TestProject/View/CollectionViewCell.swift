@@ -10,36 +10,42 @@ import Kingfisher
 
 class CollectionViewCell: UICollectionViewCell {
 
+    weak var delegate: CollectionViewCellProtocol?
+    
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var didTapButton: UIButton!
+    
+    @IBAction func didTapButtonAction(_ sender: UIButton) {
+        delegate?.didTapImage(cell: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
     }
     
 
 }
+
 extension UIImageView {
+    
     func setImage(from url: URL?) {
-    image = nil
-
-    var completion: (Result<RetrieveImageResult, KingfisherError>) -> Void = { _ in }
-
-    completion = { [weak self] result in
-    if let _ = try? result.get() {
-    self?.layer.cornerRadius = 0
-    self?.backgroundColor = nil
-    } else {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-    self?.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: completion)
-        }
         
-    }
-        
-}
-
-    kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: completion)
+        kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: nil,
+            progressBlock: nil,
+            completionHandler: { result in
+                switch result {
+                case let .success(value):
+                    self.image = value.image
+                case .failure:
+                    self.image = UIImage(systemName: "doc")
+                }
+            }
+        )
     }
 }
