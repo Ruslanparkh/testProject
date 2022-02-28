@@ -15,9 +15,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var didTapButton: UIButton!
     
-    @IBAction func didTapButtonAction(_ sender: UIButton) {
-        delegate?.didTapImage(cell: self)
-    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +23,7 @@ class CollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
     }
+//    let tap = UITapGestureRecognizer(target: "self", action: <#T##Selector?#>)
     
 
 }

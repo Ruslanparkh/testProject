@@ -34,6 +34,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="42e-MD-7HY" firstAttribute="top" secondItem="m6h-A3-Or0" secondAttribute="bottom" constant="10" id="1BK-on-hnS"/>
                             <constraint firstItem="m6h-A3-Or0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9dj-by-8ir"/>
@@ -49,11 +50,44 @@
                     <connections>
                         <outlet property="collectionView" destination="42e-MD-7HY" id="SPC-3b-WvT"/>
                         <outlet property="searchBar" destination="m6h-A3-Or0" id="wQd-cL-hxT"/>
+                        <segue destination="eZ1-S7-FTU" kind="show" identifier="ShowFullImage" id="p5F-xt-raB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1942.0289855072465" y="87.723214285714278"/>
+        </scene>
+        <!--Full Image View-->
+        <scene sceneID="xAh-PA-l5j">
+            <objects>
+                <viewController storyboardIdentifier="SecondVC" id="eZ1-S7-FTU" customClass="FullImageView" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OJq-wf-vXv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-yT-6KV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="AmQ-yj-4Cq"/>
+                                </items>
+                            </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TlE-cN-jOr">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3fF-O3-Wi5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7oO-dD-DhT"/>
+                    <connections>
+                        <outlet property="OpenFullImage" destination="TlE-cN-jOr" id="k3h-AR-zfI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lgl-qf-cdg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2794.202898550725" y="87.723214285714278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TL0-sd-isW">

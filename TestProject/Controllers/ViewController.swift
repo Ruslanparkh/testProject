@@ -15,6 +15,10 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+//    @IBAction func imageTapped(_ sender: Any) {
+//                CollectionViewCell =
+//    }
+    
     var imageData: ImageData?
     var searchItem: String?
     let nibCell = UINib(nibName: I.cellIdentifier, bundle: nil)
@@ -27,6 +31,7 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
         collectionView.delegate = self
         searchBar.delegate = self
         collectionView.register(UINib(nibName: I.cellNibName, bundle: nil), forCellWithReuseIdentifier: I.cellIdentifier)
+        
     }
     
     func fecthPhotos(query: String){
@@ -56,6 +61,18 @@ class ViewController: UIViewController,UISearchBarDelegate, UICollectionViewData
         cell.imageView.setImage(from: URL(string: imageData?.images_results[indexPath.row].original ?? ""))
         return cell
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+        if let SecondVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") as? FullImageView {
+            SecondVC.OpenFullImage.image = cell?.imageView.image
+            
+            self.navigationController?.pushViewController(SecondVC, animated: true)
+        }
+//       performSegue(withIdentifier: "ShowFullImage", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
